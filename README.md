@@ -5,6 +5,6 @@ Yeah, it's a dump off Poki, with ads stripped, no tracking, fully open source an
 
 Also, they left their HTML5 API Keys in their active build on Poki, so if you see dummy strings, that's why.
 
-Anyway, go play around with Emma! (I call the cat Emaa, don't ask, lol.)
+Anyway, go play around with Emma! (I call the cat Emma, don't ask, lol.)
 
 Later, FreeBSDKernel9-0.
