@@ -1,10 +1,10 @@
-# Cat-ClockWork-Mod-Project
+# The Puffy Cat Open Source Project
 
-100% open source cat sandbox-type game, fully moddable, you can easily mess around.
-Based on cat-o-licious Source Code, here (moddable assets, gravity, all of it): https://github.com/fiorix/cat-o-licious .
+So, I spent a bit making Puffy Cat 1.10.1 open source, so here you go.
+Yeah, it's a dump off Poki, with ads stripped, no tracking, fully open source and moddable.
 
-Structure Plans: Gonna have it laid out neatly, also gonna have a "Download" thing for the full game, which only gets updated if the main files break, and I have to copy stuff over.
+Also, they left their HTML5 API Keys in their active build on Poki, so if you see dummy strings, that's why.
 
-Credits, by thw way: fiorix/cat-o-licious . Go support them, and drop your mods there, too!
+Anyway, go play around with Emma! (I call the cat Emaa, don't ask, lol.)
 
-Bye for now, FreeBSDKernel9-0.
+Later, FreeBSDKernel9-0.
