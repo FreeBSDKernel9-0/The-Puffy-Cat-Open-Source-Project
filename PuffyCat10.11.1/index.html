@@ -256,89 +256,6 @@
                     try {
                         var t, n = document.createElement("canvas"), o = n.getContext("webgl") || n.getContext("experimental-webgl");
                         o && o instanceof WebGLRenderingContext && (e = o.getParameter(o.RENDERER), e = (e = (t = o.getExtension("WEBGL_debug_renderer_info")) ? o.getParameter(t.UNMASKED_RENDERER_WEBGL) || e : e) || "Unknown WebGL 1.0");
-                    } catch (e) { console.log("WebGL detect error: " + e) }
-        
-                    throw (e = document.getElementById("webgl-not-supported")).style.display = "block",
-                    setTimeout(function() { e.className = "visible" }, 0),
-                    document.getElementById("canvas").style.display = "none",
-                    "No WebGL";
-                }
-            }();
-        </script>
-    </div>
-
-    <script id="engine-loader" type="text/javascript" src="dmloader.js"></script>
-
-    <script id="engine-setup" type="text/javascript">
-        "undefined" != typeof ProgressView && (ProgressView.addProgress = function(e) {
-            for (var s = ProgressView, t = (e.insertAdjacentHTML("afterend", '<div id="' + s.progress_id + '" class="progress"><div class="t">0%</div><div class="p"><div class="progress-dot"></div></div><div class="p"><div class="progress-dot"></div></div><div class="p"><div class="progress-dot"></div></div></div>'), s.progress = document.getElementById(s.progress_id), s.items = [], document.getElementsByClassName("progress-dot")), r = 0; r < t.length; r++) s.items.push(t[r]);
-            s.prevPercentage = 0, s.textProgress = document.getElementsByClassName("t")[0], s.updateProgress(0);
-        }, ProgressView.updateProgress = function(e) {
-            if (!isNaN(e)) {
-                for (var s = ProgressView, t = (e = Math.min(Math.max(s.prevPercentage, e), 100), s.prevPercentage = e, s.items.length), r = 100 / t, o = parseInt("1600000") / 1024 / 1024, d = (s.textProgress.textContent = Math.floor(e) + "% (" + o.toFixed(2) + "MB)", 0), i = 0; i < t; i++) {
-                    var a, n = "40%";
-                    d + r <= e ? n = "100%" : 0 < (a = e - d) && (n = Math.round(40 + a / r * 60) + "%"),
-                    s.items[i].style.width != n && (s.items[i].style.width = n, s.items[i].className = "progress-dot progress-dot-" + n.substr(0, n.length - 1)),
-                    d += r;
-                }
-            }
-        });
-        
-        document.getElementById("canvas").addEventListener("webglcontextlost", function(e) {
-            try { PokiSDK.captureError("WebGL context lost.") } catch (e) {}
-            location.reload();
-        });
-    </script>
-
-    <script id="engine-start" type="text/javascript">
-        !function() {
-            function e(n, i) { i && "undefined" != typeof Sentry && Sentry.configureScope(function(e) { e.setTag(n, i) }) }
-            var n, o, i;
-            (i = detectWebGLRenderer()) && (e("screen.pixel_ratio", window.devicePixelRatio), e("screen.width", window.screen.width), e("screen.height", window.screen.height), e("gl_info.renderer", i), Module.__debugInfoWebGLRenderer = i, Module.hasWebGLSupport = function() { return !0 }, n = CUSTOM_PARAMETERS.can_not_download_file_callback, CUSTOM_PARAMETERS.can_not_download_file_callback = function(e) {
-                var i, t;
-                i = "Can't download file", t = { file: e }, "undefined" != typeof Sentry && Sentry.withScope(function(n) { Object.keys(t).forEach(function(e) { n.setExtra(e, t[e]) }), Sentry.captureMessage(i, "info") }), console.error(i, JSON.stringify(t)), "function" == typeof n && n.call(this, e);
-            }, o = window.devicePixelRatio || 1, CUSTOM_PARAMETERS.engine_arguments.push("--config=display.high_dpi=0"), CUSTOM_PARAMETERS.resize_window_callback = function() {
-                /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream && window.scrollTo(0, 0);
-                var e = document.getElementById("app-container"), n = document.getElementById("canvas"), i = window.innerWidth, t = +window.innerHeight;
-                -1 == i && -1 == t || (width = i, height = t, e.style.width = width + "px", e.style.height = height + 0 + "px", n.width = Math.floor(width*o), n.height = Math.floor(height*o));
-            }, i = document.getElementById("running-from-file-warning"), window.location.href.startsWith("file://") ? i.style.display = "block" : (EngineLoader.load("canvas", "puffy_cat"), i.parentNode.removeChild(i)));
-        }();
-    </script>
-
-    <script id="reszip-setup" type="text/javascript">
-        !function() {
-            function A(r) { for (var t = "", n = 7; 0 <= n; n--) t += "0123456789abcdef".charAt(r >> 4 * n & 15); return t }
-            function M(r, t) { var n = (65535 & r) + (65535 & t); return (r >> 16) + (t >> 16) + (n >> 16) << 16 | 65535 & n }
-            function F(r, t)
-    <body>
-    <div id="app-container" class="canvas-app-container">
-        <div id="running-from-file-warning" style="display:none;margin:3em">
-            <h1>Running from local file ⚠️</h1>
-            <p>It seems like you have opened this file by double-clicking on it. In order to test your build in a browser <b>you need to load this file from a web server</b>.</p>
-        </div>
-
-        <div id="webgl-not-supported">
-            <div class="smile">😢</div>
-            <span class="i18n-en">Can't run the game: <b>WebGL</b> is disabled.</span>
-            <button onclick="return this.disabled=!0,location.reload(),!0"><span class="i18n-en">Restart</span></button>
-        </div>
-
-        <div id="canvas-container" class="canvas-app-canvas-container">
-            <canvas id="canvas" class="canvas-app-canvas" tabindex="1" width="1000" height="1500"></canvas>
-        </div>
-
-        <div class="buttons-background"></div>
-
-        <script id="webgl-detect" type="text/javascript">
-            var detectWebGLRenderer;
-            !function() {
-                var r, e, t, n;
-                if (!(detectWebGLRenderer = function() {
-                    if (void 0 !== r) return r;
-                    var e = !1;
-                    try {
-                        var t, n = document.createElement("canvas"), o = n.getContext("webgl") || n.getContext("experimental-webgl");
-                        o && o instanceof WebGLRenderingContext && (e = o.getParameter(o.RENDERER), e = (e = (t = o.getExtension("WEBGL_debug_renderer_info")) ? o.getParameter(t.UNMASKED_RENDERER_WEBGL) || e : e) || "Unknown WebGL 1.0");
                     } catch (e) {}
                     return r = e;
                 })()) {
@@ -375,6 +292,7 @@
     </script>
 
     <script id="engine-start" type="text/javascript">
+        /* global EngineLoader, Module, CUSTOM_PARAMETERS */
         !function() {
             function e(n, i) { i && "undefined" != typeof Sentry && Sentry.configureScope(function(e) { e.setTag(n, i) }) }
             var n, o, i;
@@ -390,6 +308,7 @@
     </script>
 
     <script id="reszip-setup" type="text/javascript">
+        /* global DMSYS, FS */
         (function() {
             function convertToHex(value) {
                 var hexString = "";
@@ -503,15 +422,19 @@
     </script>
 
     <script id="poki-sdk-setup" type="text/javascript">
+        /* global Progress */
         var data = {}, isLoadFinished = !1;
-        Progress.addListener(function(i) {
-            data.percentageDone = i / 100;
-            isLoadFinished || PokiSDK.gameLoadingProgress(data);
-            100 != i || isLoadFinished || (PokiSDK.gameLoadingFinished(), isLoadFinished = !0);
-        });
+        if (typeof Progress !== "undefined" && Progress.addListener) {
+            Progress.addListener(function(i) {
+                data.percentageDone = i / 100;
+                isLoadFinished || PokiSDK.gameLoadingProgress(data);
+                100 != i || isLoadFinished || (PokiSDK.gameLoadingFinished(), isLoadFinished = !0);
+            });
+        }
         
         Module.onRuntimeInitialized = function() {
             PokiSDK.init().then(() => { Module.runApp("canvas") }).catch(() => { Module.runApp("canvas") });
         };
     </script>
 </body>
+</html>
