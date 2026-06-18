@@ -438,7 +438,11 @@
     <script type="text/javascript">
         if (typeof Module !== 'undefined') {
             Module['archive_location_filter'] = function(path) { 
-                return path.replace(/^\//, ''); 
+                
+                return path.replace(/^\//, '').replace('.json', '.txt'); 
+            };
+        }
+    </script>
             };
         }
     </script>
