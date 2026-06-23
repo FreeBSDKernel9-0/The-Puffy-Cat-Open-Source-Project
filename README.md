@@ -1,9 +1,9 @@
 # The Puffy Cat Open Source Project
 
-So, I spent a bit making Puffy Cat 1.10.1 open source, so here you go.
+So, I spent a bit making Puffy Cat 1.0.1 open source, so here you go.
 Yeah, it's a dump off Poki, with ads stripped, no tracking, fully open source and moddable.
 
-Also, they left their HTML5 API Keys in their active build on Poki, so if you see dummy strings, that's why.
+Also, they left their HTML5 API Keys in their active build on Poki, so if you see dummy strings in game0.projectc, that's why.
 
 Anyway, go play around with Emma! (I call the cat Emma, don't ask, lol.)
 
@@ -17,4 +17,4 @@ After then, It will still probably be FreeBSD making things, but if you see me c
 See ya nerds, KWRobber
 
 ----------
-This project is not made as a means of obtaining API keys or any other confidential information of the authors. If you find any PIA, please let either, @FreeBSDKernel9-0 or @KWRobber know at your earliest convenience.
+This project is not made as a means of obtaining API keys or any other confidential information of the authors. If you find any PII, please let either, @FreeBSDKernel9-0 or @KWRobber know at your earliest convenience.
