@@ -17,5 +17,5 @@ After then, It will still probably be FreeBSD making things, but if you see me c
 See ya nerds, KWRobber
 
 ----------
-This project is not made as a means of obtaining API keys or any other confidential information of the authors. If you find any PII, please let either, @FreeBSDKernel9-0 or @KWRobber know at your earliest convenience.
+This project is not made as a means of obtaining API keys or any other confidential information of the authors of the original game. If you find any PII, please let either, @FreeBSDKernel9-0 or @KWRobber know at your earliest convenience.
 ---------------------------------------------------------------------------------------------------------------------------------------
