@@ -303,7 +303,8 @@
                 /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream && window.scrollTo(0, 0);
                 var e = document.getElementById("app-container"), n = document.getElementById("canvas"), i = window.innerWidth, t = +window.innerHeight;
                 -1 == i && -1 == t || (width = i, height = t, e.style.width = width + "px", e.style.height = height + 0 + "px", n.width = Math.floor(width*o), n.height = Math.floor(height*o));
-            }, i = document.getElementById("running-from-file-warning"), window.location.href.startsWith("file://") ? i.style.display = "block" : (EngineLoader.load("canvas", "puffy_cat"), i.parentNode.removeChild(i)));
+            }, i = document.getElementById("running-from-file-warning"),window.location.href.startsWith("file://") ? i.style.display = "block" : (CUSTOM_PARAMETERS.app_manifest = "archive_files.txt", EngineLoader.load("canvas", "puffy_cat"), i.parentNode.removeChild(i));
+, i.parentNode.removeChild(i)));
         }();
     </script>
 
