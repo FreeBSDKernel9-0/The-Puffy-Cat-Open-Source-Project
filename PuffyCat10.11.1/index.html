@@ -293,21 +293,33 @@
 
     <script id="engine-start" type="text/javascript">
         /* global EngineLoader, Module, CUSTOM_PARAMETERS */
-        !function() {
-            function e(n, i) { i && "undefined" != typeof Sentry && Sentry.configureScope(function(e) { e.setTag(n, i) }) }
-            var n, o, i;
-            (i = detectWebGLRenderer()) && (e("screen.pixel_ratio", window.devicePixelRatio), e("screen.width", window.screen.width), e("screen.height", window.screen.height), e("gl_info.renderer", i), Module.__debugInfoWebGLRenderer = i, Module.hasWebGLSupport = function() { return !0 }, n = CUSTOM_PARAMETERS.can_not_download_file_callback, CUSTOM_PARAMETERS.can_not_download_file_callback = function(e) {
-                var i, t;
-                i = "Can't download file", t = { file: e }, "undefined" != typeof Sentry && Sentry.withScope(function(n) { Object.keys(t).forEach(function(e) { n.setExtra(e, t[e]) }), Sentry.captureMessage(i, "info") }), console.error(i, JSON.stringify(t)), "function" == typeof n && n.call(this, e);
-            }, o = window.devicePixelRatio || 1, CUSTOM_PARAMETERS.engine_arguments.push("--config=display.high_dpi=0"), CUSTOM_PARAMETERS.resize_window_callback = function() {
-                /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream && window.scrollTo(0, 0);
-                var e = document.getElementById("app-container"), n = document.getElementById("canvas"), i = window.innerWidth, t = +window.innerHeight;
-                -1 == i && -1 == t || (width = i, height = t, e.style.width = width + "px", e.style.height = height + 0 + "px", n.width = Math.floor(width*o), n.height = Math.floor(height*o));
-            }, i = document.getElementById("running-from-file-warning"),window.location.href.startsWith("file://") ? i.style.display = "block" : (CUSTOM_PARAMETERS.app_manifest = "archive_files.txt", EngineLoader.load("canvas", "puffy_cat"), i.parentNode.removeChild(i));
-, i.parentNode.removeChild(i)));
-        }();
-    </script>
-
+  !function() {
+    function e(n, i) { i && "undefined" != typeof Sentry && Sentry.configureScope(function(e) { e.setTag(n, i) }) }
+    var n, o, i;
+    (i = detectWebGLRenderer()) && (
+        e("screen.pixel_ratio", window.devicePixelRatio), 
+        e("screen.width", window.screen.width), 
+        e("screen.height", window.screen.height), 
+        e("gl_info.renderer", i), 
+        Module.__debugInfoWebGLRenderer = i, 
+        Module.hasWebGLSupport = function() { return !0 }, 
+        n = CUSTOM_PARAMETERS.can_not_download_file_callback, 
+        CUSTOM_PARAMETERS.can_not_download_file_callback = function(e) {
+            var i, t;
+            i = "Can't download file", t = { file: e }, "undefined" != typeof Sentry && Sentry.withScope(function(n) { Object.keys(t).forEach(function(e) { n.setExtra(e, t[e]) }), Sentry.captureMessage(i, "info") }), console.error(i, JSON.stringify(t)), "function" == typeof n && n.call(this, e);
+        }, 
+        o = window.devicePixelRatio || 1, 
+        CUSTOM_PARAMETERS.engine_arguments.push("--config=display.high_dpi=0"), 
+        CUSTOM_PARAMETERS.resize_window_callback = function() {
+            /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream && window.scrollTo(0, 0);
+            var e = document.getElementById("app-container"), n = document.getElementById("canvas"), i = window.innerWidth, t = +window.innerHeight;
+            -1 == i && -1 == t || (width = i, height = t, e.style.width = width + "px", e.style.height = height + 0 + "px", n.width = Math.floor(width*o), n.height = Math.floor(height*o));
+        }, // 👈 Added this missing bracket back in!
+        i = document.getElementById("running-from-file-warning"), 
+        window.location.href.startsWith("file://") ? i.style.display = "block" : (CUSTOM_PARAMETERS.app_manifest = "archive_files.txt", EngineLoader.load("canvas", "puffy_cat"), i.parentNode.removeChild(i))
+    );
+}();
+</script>
     <script id="reszip-setup" type="text/javascript">
         /* global DMSYS, FS */
         (function() {
